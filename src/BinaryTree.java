@@ -70,10 +70,13 @@ public class BinaryTree<T> {
     }
 
     public int elementsInLevel(int level) {
-        if (isEmpty())
-            return 0;
-        if (level == 1)
-            return 1;
+        if (level == 1){
+            if (root.elem != null) {
+                return 1;
+            }else
+                return 0;
+        }
+
         return getLeft().elementsInLevel(level - 1) + getRight().elementsInLevel(level - 1);
     }
 
