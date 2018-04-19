@@ -45,28 +45,28 @@ public class BinaryTree<T> {
 
     }
 
-    public int weight(BinaryTree<T> tree){
-        if(tree.isEmpty()){
+    public int weight(){
+        if(isEmpty()){
             return 0;
         }
-        return 1 + weight(tree.getLeft()) + weight(tree.getRight());
+        return 1 + getLeft().weight() + getRight().weight();
     }
 
-    public int leaves(BinaryTree<T> tree){
-        if (tree.getLeft() == null && tree.getLeft() == null){
+    public int leaves(){
+        if (getLeft() == null && getRight() == null){
             return 1;
         }
-        return  leaves(tree.getRight()) + leaves(tree.getLeft());
+        return  getRight().leaves() + getLeft().leaves();
     }
 
-    public int contains(BinaryTree<T> tree,T elem){
-        if(tree.isEmpty()){
+    public int contains(T elem){
+        if(isEmpty()){
             return 0;
         }
-        if(tree.root.elem == elem){
-            return 1 + contains(tree.getLeft(),elem) +contains(tree.getRight(),elem);
+        if(root.elem == elem){
+            return 1 + getLeft().contains(elem) +getRight().contains(elem);
         }
-        return contains(tree.getLeft(),elem) +contains(tree.getRight(),elem);
+        return getLeft().contains(elem) + getRight().contains(elem);
     }
 
     public int elementsInLevel(int level) {
@@ -77,12 +77,12 @@ public class BinaryTree<T> {
         return getLeft().elementsInLevel(level - 1) + getRight().elementsInLevel(level - 1);
     }
 
-    public int heightOfTree(BinaryTree<T> tree) {
-        if (tree.root == null) {
+    public int heightOfTree() {
+        if (root == null) {
             return 0;
         }
-        int hLeftSub = heightOfTree(tree.getLeft());
-        int hRightSub = heightOfTree(tree.getRight());
+        int hLeftSub = getLeft().heightOfTree();
+        int hRightSub = getRight().heightOfTree();
         return Math.max(hLeftSub, hRightSub) + 1;
     }
 }

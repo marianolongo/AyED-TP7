@@ -5,7 +5,7 @@ public class Main {
         BinaryTree<Integer> h2 = new BinaryTree<Integer>(9);
 
         BinaryTree<Integer> b1 = new BinaryTree<Integer>(3,h1,h2);
-        BinaryTree<Integer> b2 = new BinaryTree<Integer>(5,new BinaryTree<Integer>(11),new BinaryTree<Integer>(13));
+        BinaryTree<Integer> b2 = new BinaryTree<Integer>(5,new BinaryTree<Integer>(11),new BinaryTree<Integer>(null));
         BinaryTree<Integer> binaryTree = new BinaryTree<Integer>(1,b1,b2);
 
         System.out.println(binaryTree.elementsInLevel(3));
