@@ -102,6 +102,7 @@ public class BinaryTree<T> {
     }
     public boolean myEquals(BinaryTree<T> tree){
         if(this.root.equals(tree.root)){
+            System.out.println("hola");
             return true;
         }
         return this.getLeft().myEquals(tree.getLeft()) && this.getRight().myEquals(tree.getRight());
