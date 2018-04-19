@@ -18,11 +18,11 @@ public class BinaryTree<T> {
     public BinaryTree(){
         root = null;
     }
-    public BinaryTree(T o){
-        root = new DoubleNode <T>(o);
+    public BinaryTree(T root){
+        this.root = new DoubleNode <T>(root);
     }
-    public BinaryTree(T o, BinaryTree<T> tleft, BinaryTree<T> tright){
-        root = new DoubleNode<T>(o,tleft.root, tright.root);
+    public BinaryTree(T root, BinaryTree<T> tleft, BinaryTree<T> tright){
+        this.root = new DoubleNode<T>(root,tleft.root, tright.root);
     }
     public boolean isEmpty(){
         return root == null;
@@ -69,16 +69,13 @@ public class BinaryTree<T> {
         return contains(tree.getLeft(),elem) +contains(tree.getRight(),elem);
     }
 
-//    public int elementsInLevel(int n, BinaryTree<T> tree) {
-//        if(n-1 == 1){
-//           if (tree.getLeft().root.elem != null){
-//               return 1;
-//           }
-//           if (tree.getRight().root.elem != null){
-//               return 1;
-//           }
-//        }
-//    }
+    public int elementsInLevel(int n, BinaryTree<T> tree) {
+        if (tree.isEmpty())
+            return 0;
+        if (n == 1)
+            return 1;
+        return elementsInLevel(n - 1,tree.getLeft()) + elementsInLevel(n - 1,tree.getRight());
+    }
 
     public int heightOfTree(BinaryTree<T> tree) {
         if (tree.root == null) {
