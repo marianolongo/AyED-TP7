@@ -5,14 +5,18 @@ public class Main {
         BinaryTree<Integer> h2 = new BinaryTree<Integer>(9);
 
         BinaryTree<Integer> b1 = new BinaryTree<Integer>(3,h1,h2);
+        BinaryTree<Integer> d1 = new BinaryTree<>(19);
+        BinaryTree<Integer> d2 = new BinaryTree<>(21);
+
         BinaryTree<Integer> b2 = new BinaryTree<Integer>(5,new BinaryTree<Integer>(11),new BinaryTree<Integer>(13));
-        BinaryTree<Integer> b3 = new BinaryTree<Integer>(5,new BinaryTree<Integer>(11),new BinaryTree<Integer>(24242));
+        BinaryTree<Integer> b3 = new BinaryTree<Integer>(5,new BinaryTree<Integer>(11),new BinaryTree<Integer>(null));
+        BinaryTree<Integer> b4 = new BinaryTree<Integer>(5,new BinaryTree<Integer>(13,d1,d2),new BinaryTree<Integer>(13));
 
         BinaryTree<Integer> binaryTree = new BinaryTree<Integer>(1,b1,b2);
-        BinaryTree<Integer> binaryTree2 = new BinaryTree<Integer>(1,b1,b2);
+        BinaryTree<Integer> binaryTree2 = new BinaryTree<Integer>(1,b1,b4);
 
 
-        System.out.println(binaryTree.myEquals(binaryTree2));
+        System.out.println(binaryTree.isomorphic(binaryTree2));
 
         /*
                                   1

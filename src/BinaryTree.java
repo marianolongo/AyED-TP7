@@ -102,15 +102,25 @@ public class BinaryTree<T> {
     }
     public boolean myEquals(BinaryTree<T> tree){
         return equalsNode(this.root, tree.root);
-
     }
 
-    public boolean equalsNode(DoubleNode<T> node1, DoubleNode<T> node2){
+    private boolean equalsNode(DoubleNode<T> node1, DoubleNode<T> node2){
         if (node1 == null && node2 == null)return true;
         if (node1 == null || node2 == null)return false;
         if (node1.elem != node2.elem) return false;
 
         return equalsNode(node1.left, node2.left) && equalsNode(node1.right, node2.right);
 
+    }
+
+    public boolean isomorphic(BinaryTree<T> tree) {
+        return privateIsomorphic(this.root, tree.root);
+    }
+
+    private boolean privateIsomorphic(DoubleNode<T> node1, DoubleNode<T> node2) {
+        if(node1 == null && node2 == null)return true;
+        if(node1 == null || node2 == null)return false;
+
+        return privateIsomorphic(node1.left,node2.left) && privateIsomorphic(node1.right,node2.right);
     }
 }
