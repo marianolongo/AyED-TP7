@@ -9,7 +9,7 @@ public class Main {
         BinaryTree<Integer> b3 = new BinaryTree<Integer>(5,new BinaryTree<Integer>(11),new BinaryTree<Integer>(24242));
 
         BinaryTree<Integer> binaryTree = new BinaryTree<Integer>(1,b1,b2);
-        BinaryTree<Integer> binaryTree2 = new BinaryTree<Integer>(1,b1,b3);
+        BinaryTree<Integer> binaryTree2 = new BinaryTree<Integer>(1,b1,b2);
 
 
         System.out.println(binaryTree.myEquals(binaryTree2));
@@ -28,5 +28,6 @@ public class Main {
                       /   \
                      /     \
                     15     17
-         */    }
+         */
+    }
 }

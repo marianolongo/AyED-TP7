@@ -101,10 +101,17 @@ public class BinaryTree<T> {
         return getLeft().sum() + getRight().sum();
     }
     public boolean myEquals(BinaryTree<T> tree){
-        if(this.root.equals(tree.root)){
-            System.out.println("hola");
-            return true;
+        if()
+        if(root.elem != tree.root.elem){
+            return false;
         }
         return this.getLeft().myEquals(tree.getLeft()) && this.getRight().myEquals(tree.getRight());
+
+       // return nodesEquals(root.left, tree.root.left) && nodesEquals(root.right, tree.root.right);
+    }
+
+//    private boolean nodesEquals(DoubleNode<T> node1, DoubleNode<T> node2){
+//        return node1.elem.equals(node2.elem);
+//    }
     }
 }
