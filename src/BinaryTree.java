@@ -69,12 +69,12 @@ public class BinaryTree<T> {
         return contains(tree.getLeft(),elem) +contains(tree.getRight(),elem);
     }
 
-    public int elementsInLevel(int n, BinaryTree<T> tree) {
-        if (tree.isEmpty())
+    public int elementsInLevel(int level) {
+        if (isEmpty())
             return 0;
-        if (n == 1)
+        if (level == 1)
             return 1;
-        return elementsInLevel(n - 1,tree.getLeft()) + elementsInLevel(n - 1,tree.getRight());
+        return getLeft().elementsInLevel(level - 1) + getRight().elementsInLevel(level - 1);
     }
 
     public int heightOfTree(BinaryTree<T> tree) {

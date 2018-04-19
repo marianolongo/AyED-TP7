@@ -8,7 +8,8 @@ public class Main {
         BinaryTree<Integer> b2 = new BinaryTree<Integer>(5,new BinaryTree<Integer>(11),new BinaryTree<Integer>(13));
         BinaryTree<Integer> binaryTree = new BinaryTree<Integer>(1,b1,b2);
 
-        System.out.println(binaryTree.elementsInLevel(3,binaryTree));
+        System.out.println(binaryTree.elementsInLevel(3));
+
         /*
                                   1
                                /     \
