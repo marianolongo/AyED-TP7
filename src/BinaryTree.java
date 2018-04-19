@@ -88,4 +88,22 @@ public class BinaryTree<T> {
         int hRightSub = getRight().heightOfTree();
         return Math.max(hLeftSub, hRightSub) + 1;
     }
+
+    public int sum(){
+        if(root.elem instanceof Integer) throw new RuntimeException("T is not Integer");
+        if(isEmpty())return 0;
+        return getLeft().sum() + getRight().sum();
+    }
+
+    public int sumIfMultipleOf3(){
+        if(root.elem instanceof Integer) throw new RuntimeException("T is not Integer");
+        if(isEmpty() || (Integer)root.elem % 3 != 0)return 0;
+        return getLeft().sum() + getRight().sum();
+    }
+    public boolean myEquals(BinaryTree<T> tree){
+        if(this.root.equals(tree.root)){
+            return true;
+        }
+        return this.getLeft().myEquals(tree.getLeft()) && this.getRight().myEquals(tree.getRight());
+    }
 }
