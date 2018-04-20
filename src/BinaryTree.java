@@ -2,6 +2,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
@@ -168,20 +169,25 @@ public class BinaryTree<T> {
     public boolean stable(){
         if (isEmpty()) return true;
         if (root.right == null && root.left == null) return true;
-        if ((Integer) root.elem < (Integer) root.right.elem || (Integer) root.elem < (Integer) root.left.elem) return false;
+        return privateStable(root);
+    }
+
+    private boolean privateStable(DoubleNode<T> root){
         if ((Integer) root.elem > (Integer) root.right.elem && (Integer) root.elem > (Integer) root.left.elem) return true;
-        return getLeft().stable() && getRight().stable();
+        if ((Integer) root.elem < (Integer) root.right.elem || (Integer) root.elem < (Integer) root.left.elem) return false;
+        return privateStable(root.left) && privateStable(root.right);
     }
 
-    public boolean treeOccurs(BinaryTree<T> tree){
+   // public boolean treeOccurs(BinaryTree<T> tree){
 
-    }
+    //}
 
     public void front() {
         if (root.left == null && root.right == null) System.out.println(root.elem);
         getRight().front();
         getLeft().front();
     }
+
 
     public void writeTree(){
         try {
