@@ -1,3 +1,9 @@
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.Stack;
+
 public class BinaryTree<T> {
 
     private class DoubleNode<T> {
@@ -157,5 +163,64 @@ public class BinaryTree<T> {
             }
         }
         return result;
+    }
+
+    public void writeTree(){
+        try {
+            ObjectOutputStream outPutTree = new ObjectOutputStream(new FileOutputStream("myObjects.txt"));
+            outPutTree.writeObject(this);
+            outPutTree.close();
+        }
+        catch (Exception e){
+            System.out.println("Write File Not Found");
+        }
+    }
+    public BinaryTree readTree(){
+        try {
+            ObjectInputStream inPutTree = new ObjectInputStream(new FileInputStream("myObjects.txt"));
+            BinaryTree arBin= (BinaryTree) inPutTree.readObject();
+            return arBin;
+        }
+        catch (Exception e){
+            System.out.println("Read File Not Found");
+        }
+        throw new RuntimeException("There was no tree in the selected file");
+
+        }
+    public void byLevels(){
+        QueueUs<DoubleNode> q = new QueueUs<DoubleNode>();
+        q.enque(root);
+
+        while (q.getSize() > 0){
+
+            DoubleNode current = q.deque();
+            System.out.println(current.elem);
+
+            if (current.left != null)
+                q.enque(current.left);
+
+            if (current.right != null)
+                q.enque(current.right);
+        }
+
+    }
+    public void postOrder (){
+        Stack<DoubleNode> stack= new Stack<>();
+        stack.push(root);
+        DoubleNode current= stack.peek();
+        while (current.left != null || current.right != null){
+            while (current.left!=null){
+                stack.push(current.left);
+                current=current.left;
+            }
+            if(current.right!= null){
+                stack.push(current.right);
+                current= current.right;
+            }
+        }
+        while (stack.peek()!= null){
+            DoubleNode temporary= stack.pop();
+            System.out.println(temporary);
+        }
     }
 }
