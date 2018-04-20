@@ -18,11 +18,10 @@ public class Main {
 
         BinaryTree<Integer> binaryTree = new BinaryTree<Integer>(1,b1,b2);
         BinaryTree<Integer> binaryTree2 = new BinaryTree<Integer>(1,b5,b2);
+        BinaryTree<Integer> binaryTree3 = new BinaryTree<Integer>(100, new BinaryTree<Integer>(50,new BinaryTree<Integer>(25),, new BinaryTree<>(20)),);
 
-        System.out.println(binaryTree2.isFull());
-        binaryTree.preorder();
 
-        /*
+             /*
                                   1
                                /     \
                               /       \
@@ -37,5 +36,76 @@ public class Main {
                      /     \
                     15     17
          */
+        System.out.println("Weight:");
+        System.out.println(binaryTree.weight());
+        System.out.println();
+
+        System.out.println("Leaves:");
+        System.out.println( binaryTree.leaves());
+        System.out.println();
+
+        System.out.println("Contains number 7:");
+        System.out.println(binaryTree.contains(7));
+        System.out.println();
+
+        System.out.println("Number of elements in level 3:");
+        System.out.println(binaryTree.elementsInLevel(3));
+        System.out.println();
+
+        System.out.println("Height:");
+        System.out.println(binaryTree.heightOfTree());
+        System.out.println();
+
+        System.out.println("Sum of all elements:");
+        System.out.println(binaryTree.sum());
+        System.out.println();
+
+        System.out.println("Sum of all elements % 3:");
+        System.out.println(binaryTree.sumIfMultipleOf3());
+        System.out.println();
+
+        System.out.println("binarytree1 equals binarytree2");
+        System.out.println(binaryTree.myEquals(binaryTree2));
+        System.out.println();
+
+        System.out.println("binarytree1 isomorphic binarytree2:");
+        System.out.println(binaryTree.isomorphic(binaryTree2));
+        System.out.println();
+
+//        System.out.println("Resembling:");
+//        System.out.println(binaryTree.sum());
+//        System.out.println();
+
+        System.out.println("isComplete:");
+        System.out.println(binaryTree.isComplete());
+        System.out.println();
+
+        System.out.println("isFull:");
+        System.out.println(binaryTree.isFull());
+        System.out.println();
+
+        System.out.println("Stable:");
+        System.out.println(binaryTree.stable());
+        System.out.println();
+//
+//        System.out.println("Sum of all elements:");
+//        System.out.println(binaryTree.sum());
+//        System.out.println();
+
+        System.out.println("By Levels:");
+        binaryTree.byLevels();
+        System.out.println();
+
+        System.out.println("Preorder:");
+        binaryTree.preorder();
+        System.out.println();
+
+        System.out.println("Inorder:");
+        binaryTree.inorder();
+        System.out.println();
+
+        System.out.println("Postorder:");
+        binaryTree.postorder();
+
     }
 }

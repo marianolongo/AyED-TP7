@@ -65,7 +65,7 @@ public class BinaryTree<T> {
     }
 
     public int leaves() {
-        if (getLeft() == null && getRight() == null) {
+        if (root.left == null && root.right == null) {
             return 1;
         }
         return getRight().leaves() + getLeft().leaves();
@@ -102,15 +102,14 @@ public class BinaryTree<T> {
     }
 
     public int sum() {
-        if (root.elem instanceof Integer) throw new RuntimeException("T is not Integer");
         if (isEmpty()) return 0;
-        return getLeft().sum() + getRight().sum();
+        return (Integer)root.elem + getLeft().sum() + getRight().sum();
     }
 
     public int sumIfMultipleOf3() {
-        if (root.elem instanceof Integer) throw new RuntimeException("T is not Integer");
-        if (isEmpty() || (Integer) root.elem % 3 != 0) return 0;
-        return getLeft().sum() + getRight().sum();
+        if (isEmpty())return 0;
+        if((Integer) root.elem % 3 == 0) return (Integer)root.elem + getLeft().sumIfMultipleOf3() + getRight().sumIfMultipleOf3();
+        return getLeft().sumIfMultipleOf3() + getRight().sumIfMultipleOf3();
     }
 
     public boolean myEquals(BinaryTree<T> tree) {
@@ -166,6 +165,14 @@ public class BinaryTree<T> {
         return result;
     }
 
+    public boolean stable(){
+        if (isEmpty()) return true;
+        if (root.right == null && root.left == null) return true;
+        if ((Integer) root.elem < (Integer) root.right.elem || (Integer) root.elem < (Integer) root.left.elem) return false;
+        if ((Integer) root.elem > (Integer) root.right.elem && (Integer) root.elem > (Integer) root.left.elem) return true;
+        return getLeft().stable() && getRight().stable();
+    }
+
     public void writeTree(){
         try {
             ObjectOutputStream outPutTree = new ObjectOutputStream(new FileOutputStream("myObjects.txt"));
@@ -176,6 +183,7 @@ public class BinaryTree<T> {
             System.out.println("Write File Not Found");
         }
     }
+
     public BinaryTree readTree(){
         try {
             ObjectInputStream inPutTree = new ObjectInputStream(new FileInputStream("myObjects.txt"));
@@ -188,27 +196,28 @@ public class BinaryTree<T> {
         throw new RuntimeException("There was no tree in the selected file");
 
         }
+
     public void byLevels(){
         if(isEmpty()){
             return;
         }
-        QueueUs<DoubleNode> q = new QueueUs<DoubleNode>();
-        q.enque(root);
+        QueueUs<DoubleNode> queue = new QueueUs<DoubleNode>();
+        queue.enque(root);
 
-        while (q.getSize() > 0){
+        while (queue.getSize() > 0){
 
-            DoubleNode current = q.deque();
-            System.out.println(current.elem);
+            DoubleNode current = queue.deque();
+            System.out.print(current.elem + " ");
 
             if (current.left != null)
-                q.enque(current.left);
+                queue.enque(current.left);
 
             if (current.right != null)
-                q.enque(current.right);
+                queue.enque(current.right);
         }
-
     }
-    public void postorder() {
+
+    public void postorder() { // Left, Right, Root
         if(isEmpty()) {
             return;
         }
@@ -216,6 +225,7 @@ public class BinaryTree<T> {
         stack.push(root);
         while(!stack.isEmpty()) {
             DoubleNode node = stack.peek();
+
             if(node.left == null && node.right == null) {
                 DoubleNode pop = stack.pop();
                 System.out.print(pop.elem + " ");;
@@ -234,7 +244,7 @@ public class BinaryTree<T> {
 
     }
 
-    public void inorder() {
+    public void inorder() { //Left, Root, Right
         if (isEmpty()) {
             return;
         }
@@ -257,7 +267,7 @@ public class BinaryTree<T> {
         }
     }
 
-    public void preorder(){
+    public void preorder(){ // Root, Left, Right
         if(isEmpty()){
             return;
         }
