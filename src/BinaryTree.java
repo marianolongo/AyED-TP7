@@ -229,7 +229,7 @@ public class BinaryTree<T> {
 
     public void writeTree(){
         try {
-            ObjectOutputStream outPutTree = new ObjectOutputStream(new FileOutputStream("myObjects.txt"));
+            ObjectOutputStream outPutTree = new ObjectOutputStream(new FileOutputStream("trees.txt"));
             outPutTree.writeObject(this);
             outPutTree.close();
         }
@@ -240,7 +240,7 @@ public class BinaryTree<T> {
 
     public BinaryTree readTree(){
         try {
-            ObjectInputStream inPutTree = new ObjectInputStream(new FileInputStream("myObjects.txt"));
+            ObjectInputStream inPutTree = new ObjectInputStream(new FileInputStream("trees.txt"));
             BinaryTree arBin= (BinaryTree) inPutTree.readObject();
             return arBin;
         }
