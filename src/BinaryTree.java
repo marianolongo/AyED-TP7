@@ -175,6 +175,16 @@ public class BinaryTree<T> {
         return getLeft().stable() && getRight().stable();
     }
 
+    public boolean treeOccurs(BinaryTree<T> tree){
+
+    }
+
+    public void front() {
+        if (root.left == null && root.right == null) System.out.println(root.elem);
+        getRight().front();
+        getLeft().front();
+    }
+
     public void writeTree(){
         try {
             ObjectOutputStream outPutTree = new ObjectOutputStream(new FileOutputStream("myObjects.txt"));
