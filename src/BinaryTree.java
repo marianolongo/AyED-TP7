@@ -154,16 +154,25 @@ public class BinaryTree<T> {
         return privateIsComplete(right.left,right.right) && privateIsComplete(left.right,left.left);
     }
 
-    public boolean isFull(){
+    public boolean isFull() {
         boolean result = false;
         for (int i = 0; i < this.heightOfTree(); i++) {
-            if(elementsInLevel(i + 1) == Math.pow(2,i)){
+            if (elementsInLevel(i + 1) == Math.pow(2, i)) {
                 result = true;
-            }else{
+            } else {
                 result = false;
             }
         }
         return result;
+    }
+
+    public boolean stable(){
+        if (root.elem instanceof Integer) throw new RuntimeException("T is not Integer");
+        if ((Integer) root.elem < (Integer) root.right.elem || (Integer) root.elem < (Integer) root.left.elem) return false;
+        if ((Integer) root.elem > (Integer) root.right.elem && (Integer) root.elem > (Integer) root.left.elem) return true;
+        if (root == null) return true;
+        if (root.right == null && root.left == null) return true;
+        return getLeft().stable() && getRight().stable();
     }
 
     public void writeTree(){
@@ -278,4 +287,6 @@ public class BinaryTree<T> {
         }
 
     }
+
+
 }
