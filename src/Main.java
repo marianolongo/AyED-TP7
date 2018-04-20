@@ -149,6 +149,9 @@ public class Main {
 
         System.out.println("Postorder:");
         binaryTree.postorder();
+        System.out.println("    ");
+        binaryTree.byLevels();
+
 
     }
 }
