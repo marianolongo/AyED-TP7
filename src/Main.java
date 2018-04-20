@@ -20,6 +20,7 @@ public class Main {
         BinaryTree<Integer> binaryTree2 = new BinaryTree<Integer>(1,b5,b2);
 
         System.out.println(binaryTree2.isFull());
+        binaryTree.postorder();
 
         /*
                                   1

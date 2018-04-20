@@ -2,6 +2,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.List;
 import java.util.Stack;
 
 public class BinaryTree<T> {
@@ -204,23 +205,69 @@ public class BinaryTree<T> {
         }
 
     }
-    public void postOrder (){
-        Stack<DoubleNode> stack= new Stack<>();
+    public void postorder() {
+        if(root==null) {
+            throw new RuntimeException("The tree is not valid");
+        }
+        Stack<DoubleNode> stack = new Stack<DoubleNode>();
         stack.push(root);
-        DoubleNode current= stack.peek();
-        while (current.left != null || current.right != null){
-            while (current.left!=null){
-                stack.push(current.left);
-                current=current.left;
+        while(!stack.isEmpty()) {
+            DoubleNode temp = stack.peek();
+            if(temp.left==null && temp.right==null) {
+                DoubleNode pop = stack.pop();
+                System.out.println(pop.elem);;
             }
-            if(current.right!= null){
-                stack.push(current.right);
-                current= current.right;
+            else {
+                if(temp.right!=null) {
+                    stack.push(temp.right);
+                    temp.right = null;
+                }
+                if(temp.left!=null) {
+                    stack.push(temp.left);
+                    temp.left = null;
+                }
             }
         }
-        while (stack.peek()!= null){
-            DoubleNode temporary= stack.pop();
-            System.out.println(temporary);
+    }
+    /*public void postOrder () {
+        Stack<DoubleNode> stack = new Stack<>();
+        stack.push(root);
+        DoubleNode current = stack.peek();
+        while (current.left != null || current.right != null) {
+            while (current.left != null) {
+                stack.push(current.left);
+                current = current.left;
+                if (current.right != null) {
+                    stack.push(current.right);
+                    current = current.right;
+                }
+            }
+            while (stack.peek() != null) {
+                DoubleNode temporary = stack.pop();
+                System.out.println(temporary.elem);
+            }
+        }
+    }*/
+    void inorder(){
+        if (root == null) {
+            return;
+        }
+        Stack<DoubleNode> stack = new Stack<DoubleNode>();
+        DoubleNode node = root;
+        while (node != null) {
+            stack.push(node);
+            node = node.left;
+        }
+        while (stack.size() > 0) {
+            node = stack.pop();
+            System.out.print(node.elem+ " ");
+            if (node.right != null) {
+                node = node.right;
+                while (node != null) {
+                    stack.push(node);
+                    node = node.left;
+                }
+            }
         }
     }
 }
