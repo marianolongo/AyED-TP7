@@ -67,19 +67,13 @@ public class BinaryTree<T> {
     }
 
     public int leaves() {
-        if (root.left == null && root.right == null) {
-            return 1;
-        }
+        if (root.left == null && root.right == null) return 1;
         return getRight().leaves() + getLeft().leaves();
     }
 
     public int contains(T elem) {
-        if (isEmpty()) {
-            return 0;
-        }
-        if (root.elem == elem) {
-            return 1 + getLeft().contains(elem) + getRight().contains(elem);
-        }
+        if (isEmpty()) return 0;
+        if (root.elem == elem) return 1 + getLeft().contains(elem) + getRight().contains(elem);
         return getLeft().contains(elem) + getRight().contains(elem);
     }
 
@@ -90,17 +84,12 @@ public class BinaryTree<T> {
             } else
                 return 0;
         }
-
         return getLeft().elementsInLevel(level - 1) + getRight().elementsInLevel(level - 1);
     }
 
     public int heightOfTree() {
-        if (root == null) {
-            return 0;
-        }
-        int hLeftSub = getLeft().heightOfTree();
-        int hRightSub = getRight().heightOfTree();
-        return Math.max(hLeftSub, hRightSub) + 1;
+        if (root == null) return 0;
+        return Math.max(getLeft().heightOfTree(), getRight().heightOfTree()) + 1;
     }
 
     public int sum() {
@@ -109,7 +98,7 @@ public class BinaryTree<T> {
     }
 
     public int sumIfMultipleOf3() {
-        if (isEmpty())return 0;
+        if (isEmpty()) return 0;
         if((Integer) root.elem % 3 == 0) return (Integer)root.elem + getLeft().sumIfMultipleOf3() + getRight().sumIfMultipleOf3();
         return getLeft().sumIfMultipleOf3() + getRight().sumIfMultipleOf3();
     }
@@ -128,9 +117,8 @@ public class BinaryTree<T> {
     }
 
     public boolean isomorphic(BinaryTree<T> tree) {
-        if(this.myEquals(tree)){
-            return true;
-        }
+        if(this.myEquals(tree))return true;
+
         return privateIsomorphic(this.root, tree.root);
     }
 
@@ -141,7 +129,7 @@ public class BinaryTree<T> {
         return privateIsomorphic(node1.left, node2.left) && privateIsomorphic(node1.right, node2.right);
     }
 
-    public boolean resembling(BinaryTree<T> tree){ //Arboles semejantes (hace preorder para iterarlos, los ordena)
+    public boolean resembling(BinaryTree<T> tree){ //Arboles semejantes (hace preorder para iterarlos y ordenarlos))
         List tree1 = new ArrayList<>();
         List tree2 = new ArrayList<>();
 
@@ -170,8 +158,6 @@ public class BinaryTree<T> {
                 stack2.push(node2.left);
             }
         }
-        Collections.sort(tree1);
-        Collections.sort(tree2);
         if(tree1.size() == tree2.size() && tree1.containsAll(tree2)) {
             return true;
         }
@@ -209,9 +195,17 @@ public class BinaryTree<T> {
     }
 
 
-   // public boolean treeOccurs(BinaryTree<T> tree){
+    public boolean treeOccurs(BinaryTree<T> tree){
+        if(!isEmpty() && tree.isEmpty()) return false;
+        if(this.myEquals(tree))return true;
+        return privateTreeOccurs(getLeft(), tree) || privateTreeOccurs(getRight(), tree);
+    }
 
-    //}
+    private boolean privateTreeOccurs(BinaryTree<T> tree1, BinaryTree<T> tree2) {
+        if(tree1.isEmpty())return false;
+        if(tree1.myEquals(tree2))return true;
+        return privateTreeOccurs(tree1.getLeft(), tree2) || privateTreeOccurs(tree1.getRight(), tree2);
+    }
 
     public void front() { //Frontera
         if(isEmpty())return;
@@ -220,10 +214,19 @@ public class BinaryTree<T> {
         getRight().front();
     }
 
-//    public ArrayList<T> listOfLeaves(){ //Frontera
-//        List<T> result = new ArrayList<>();
-//        DoubleNode<T> current = root;
-//    }
+    public List<T> listOfLeaves(){ //Frontera que devuelve array
+        List<T> result = new ArrayList<>();
+        privateListOfLeaves(result);
+        return result;
+    }
+
+    private void privateListOfLeaves(List<T> list) {
+        if(isEmpty())return;
+        if(root.left == null && root.right == null) list.add(root.elem);
+        getLeft().privateListOfLeaves(list);
+        getRight().privateListOfLeaves(list);
+    }
+
     public void writeTree(){
         try {
             ObjectOutputStream outPutTree = new ObjectOutputStream(new FileOutputStream("myObjects.txt"));

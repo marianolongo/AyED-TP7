@@ -88,12 +88,16 @@ public class Main {
         System.out.println(binaryTree.stable());
         System.out.println();
 
+        System.out.println("Occurs:");
+        System.out.println(binaryTree.treeOccurs(b2)); //b2 es rama de binaryTree, asi que deberia dar true.
+        System.out.println();
+
         System.out.println("Front:");
         binaryTree.front();
         System.out.println();
 
-        System.out.println("By Levels:");
-        binaryTree.byLevels();
+        System.out.println("ArrayList of Front:");
+        System.out.println(binaryTree.listOfLeaves());
         System.out.println();
 
         System.out.println("Preorder:");
