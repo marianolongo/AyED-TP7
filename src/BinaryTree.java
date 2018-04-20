@@ -1,5 +1,3 @@
-import javafx.collections.transformation.SortedList;
-
 public class BinaryTree<T> {
 
     private class DoubleNode<T> {
@@ -78,7 +76,7 @@ public class BinaryTree<T> {
 
     public int elementsInLevel(int level) {
         if (level == 1) {
-            if (root.elem != null) {
+            if (root != null) {
                 return 1;
             } else
                 return 0;
@@ -135,7 +133,29 @@ public class BinaryTree<T> {
         return privateIsomorphic(node1.left, node2.left) && privateIsomorphic(node1.right, node2.right);
     }
 
-    public boolean resembling(BinaryTree<T> tree){
+//    public boolean resembling(BinaryTree<T> tree){
+//
+//    }
 
+    public boolean isComplete(){
+        return privateIsComplete(root.left,root.right);
+    }
+
+    private boolean privateIsComplete(DoubleNode<T> left, DoubleNode<T> right) {
+        if (right == null && left == null) return true;
+        if (right == null || left == null) return false;
+        return privateIsComplete(right.left,right.right) && privateIsComplete(left.right,left.left);
+    }
+
+    public boolean isFull(){
+        boolean result = false;
+        for (int i = 0; i < this.heightOfTree(); i++) {
+            if(elementsInLevel(i + 1) == Math.pow(2,i)){
+                result = true;
+            }else{
+                result = false;
+            }
+        }
+        return result;
     }
 }
