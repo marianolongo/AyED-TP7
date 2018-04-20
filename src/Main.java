@@ -18,7 +18,7 @@ public class Main {
 
         BinaryTree<Integer> binaryTree = new BinaryTree<Integer>(1,b1,b2);
         BinaryTree<Integer> binaryTree2 = new BinaryTree<Integer>(1,b5,b2);
-        BinaryTree<Integer> binaryTree3 = new BinaryTree<Integer>(100, new BinaryTree<Integer>(50,new BinaryTree<Integer>(25),, new BinaryTree<>(20)),);
+        BinaryTree<Integer> binaryTree3 = new BinaryTree<Integer>(100, new BinaryTree<Integer>(50,new BinaryTree<Integer>(25), new BinaryTree<>(200)),new BinaryTree<Integer>(40,new BinaryTree<Integer>(15), new BinaryTree<>(10)));
 
 
              /*
@@ -87,10 +87,10 @@ public class Main {
         System.out.println("Stable:");
         System.out.println(binaryTree.stable());
         System.out.println();
-//
-//        System.out.println("Sum of all elements:");
-//        System.out.println(binaryTree.sum());
-//        System.out.println();
+
+        System.out.println("Front:");
+        binaryTree.front();
+        System.out.println();
 
         System.out.println("By Levels:");
         binaryTree.byLevels();
