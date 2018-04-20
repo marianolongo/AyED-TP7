@@ -3,6 +3,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
@@ -140,9 +141,42 @@ public class BinaryTree<T> {
         return privateIsomorphic(node1.left, node2.left) && privateIsomorphic(node1.right, node2.right);
     }
 
-//    public boolean resembling(BinaryTree<T> tree){
-//
-//    }
+    public boolean resembling(BinaryTree<T> tree){ //Arboles semejantes (hace preorder para iterarlos, los ordena)
+        List tree1 = new ArrayList<>();
+        List tree2 = new ArrayList<>();
+
+        Stack<DoubleNode> stack1 = new Stack<>();
+        Stack<DoubleNode> stack2 = new Stack<>();
+        stack1.push(root);
+        stack2.push(tree.root);
+        while (!stack1.empty() && !stack2.empty()) {
+            DoubleNode node1 = stack1.peek();
+            DoubleNode node2 = stack2.peek();
+            tree1.add(node1.elem);
+            tree2.add(node2.elem);
+            stack1.pop();
+            stack2.pop();
+
+            if (node1.right != null) {
+                stack1.push(node1.right);
+            }
+            if (node1.left != null) {
+                stack1.push(node1.left);
+            }
+            if (node2.right != null) {
+                stack2.push(node2.right);
+            }
+            if (node2.left != null) {
+                stack2.push(node2.left);
+            }
+        }
+        Collections.sort(tree1);
+        Collections.sort(tree2);
+        if(tree1.size() == tree2.size() && tree1.containsAll(tree2)) {
+            return true;
+        }
+        return false;
+    }
 
     public boolean isComplete(){
         return privateIsComplete(root.left,root.right);
@@ -179,14 +213,17 @@ public class BinaryTree<T> {
 
     //}
 
-    public void front() {
+    public void front() { //Frontera
         if(isEmpty())return;
         if (root.left == null && root.right == null) System.out.print(root.elem + " ");
         getLeft().front();
         getRight().front();
     }
 
-
+//    public ArrayList<T> listOfLeaves(){ //Frontera
+//        List<T> result = new ArrayList<>();
+//        DoubleNode<T> current = root;
+//    }
     public void writeTree(){
         try {
             ObjectOutputStream outPutTree = new ObjectOutputStream(new FileOutputStream("myObjects.txt"));

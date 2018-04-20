@@ -72,9 +72,9 @@ public class Main {
         System.out.println(binaryTree.isomorphic(binaryTree2));
         System.out.println();
 
-//        System.out.println("Resembling:");
-//        System.out.println(binaryTree.sum());
-//        System.out.println();
+        System.out.println("Resembling:");
+        System.out.println(binaryTree.resembling(binaryTree2));
+        System.out.println();
 
         System.out.println("isComplete:");
         System.out.println(binaryTree.isComplete());
