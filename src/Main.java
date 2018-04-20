@@ -5,8 +5,10 @@ public class Main {
         BinaryTree<Integer> h2 = new BinaryTree<Integer>(9);
         BinaryTree<Integer> h3 = new BinaryTree<Integer>(12);
 
+
         BinaryTree<Integer> b1 = new BinaryTree<Integer>(3,h1,h2);
         BinaryTree<Integer> b5 = new BinaryTree<Integer>(3,h1,h3);
+        BinaryTree<Integer> b6 = new BinaryTree<>(3,new BinaryTree<>(),h2);
 
 
         BinaryTree<Integer> d1 = new BinaryTree<>(19);
@@ -18,9 +20,9 @@ public class Main {
 
         BinaryTree<Integer> binaryTree = new BinaryTree<Integer>(1,b1,b2);
         BinaryTree<Integer> binaryTree2 = new BinaryTree<Integer>(1,b5,b3);
-        BinaryTree<Integer> binaryTree3 = new BinaryTree<Integer>(100, new BinaryTree<Integer>(50,new BinaryTree<Integer>(25), new BinaryTree<>(200)),new BinaryTree<Integer>(40,new BinaryTree<Integer>(15), new BinaryTree<>(10)));
+        BinaryTree<Integer> binaryTree3 = new BinaryTree<Integer>(1,b6,new BinaryTree<>());
 
-
+        System.out.println(binaryTree.treeOccurs(binaryTree3));
              /*
              binaryTree
 
@@ -125,7 +127,6 @@ public class Main {
         System.out.println(binaryTree.listOfLeaves());
         System.out.println();
 
-
         System.out.println("Preorder:");
         binaryTree.preorder();
         System.out.println();
@@ -133,7 +134,6 @@ public class Main {
         System.out.println("Preorder:");
         binaryTree.preorder();
         System.out.println();
-
 
         System.out.println("ByLevels:");
         binaryTree.byLevels();
@@ -149,9 +149,6 @@ public class Main {
 
         System.out.println("Postorder:");
         binaryTree.postorder();
-        System.out.println("    ");
-        binaryTree.byLevels();
-
 
     }
 }

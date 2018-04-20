@@ -191,7 +191,6 @@ public class BinaryTree<T> implements Serializable {
         return true;
     }
 
-
     public boolean treeOccurs(BinaryTree<T> tree){
         if(!isEmpty() && tree.isEmpty()) return false;
         if(this.myEquals(tree))return true;
