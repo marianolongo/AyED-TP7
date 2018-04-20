@@ -53,13 +53,11 @@ public class Main {
           /   \
          /     \
         15     17
-    */
-
-//        binaryTree.writeTree(); // Agrega el arbol al disco
-//
-//        System.out.println("Agarra el arbol del disco:");
-//        binaryTree.readTree();
-//        System.out.println();
+    */  binaryTree.writeTree(); // Agrega el arbol al disco
+        System.out.println("Escribe el arbol en Disco");
+        System.out.println("Agarra el arbol del disco:");
+        binaryTree.readTree();
+        System.out.println();
 
         System.out.println("Weight:");
         System.out.println(binaryTree.weight());
@@ -149,6 +147,9 @@ public class Main {
 
         System.out.println("Postorder:");
         binaryTree.postorder();
+        System.out.println("    ");
+        binaryTree.byLevels();
+
 
     }
 }

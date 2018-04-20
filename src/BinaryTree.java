@@ -1,15 +1,12 @@
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
-public class BinaryTree<T> {
+public class BinaryTree<T> implements Serializable {
 
-    private class DoubleNode<T> {
+    private class DoubleNode<T> implements  Serializable{
         T elem;
         DoubleNode<T> right, left;
 
@@ -229,7 +226,7 @@ public class BinaryTree<T> {
 
     public void writeTree(){
         try {
-            ObjectOutputStream outPutTree = new ObjectOutputStream(new FileOutputStream("trees.txt"));
+            ObjectOutputStream outPutTree = new ObjectOutputStream(new FileOutputStream("./trees.txt"));
             outPutTree.writeObject(this);
             outPutTree.close();
         }
@@ -240,11 +237,12 @@ public class BinaryTree<T> {
 
     public BinaryTree readTree(){
         try {
-            ObjectInputStream inPutTree = new ObjectInputStream(new FileInputStream("trees.txt"));
+            ObjectInputStream inPutTree = new ObjectInputStream(new FileInputStream("./trees.txt"));
             BinaryTree arBin= (BinaryTree) inPutTree.readObject();
             return arBin;
         }
         catch (Exception e){
+            e.printStackTrace();
             System.out.println("Read File Not Found");
         }
         throw new RuntimeException("There was no tree in the selected file");
