@@ -5,24 +5,15 @@ public class Main {
         BinaryTree<Integer> h2 = new BinaryTree<Integer>(9);
         BinaryTree<Integer> h3 = new BinaryTree<Integer>(12);
 
-
         BinaryTree<Integer> b1 = new BinaryTree<Integer>(3,h1,h2);
         BinaryTree<Integer> b5 = new BinaryTree<Integer>(3,h1,h3);
-        BinaryTree<Integer> b6 = new BinaryTree<>(3,new BinaryTree<>(),h2);
-
-
-        BinaryTree<Integer> d1 = new BinaryTree<>(19);
-        BinaryTree<Integer> d2 = new BinaryTree<>(21);
 
         BinaryTree<Integer> b2 = new BinaryTree<Integer>(5,new BinaryTree<Integer>(11),new BinaryTree<Integer>(13));
         BinaryTree<Integer> b3 = new BinaryTree<Integer>(5,new BinaryTree<Integer>(11),new BinaryTree<>());
-        BinaryTree<Integer> b4 = new BinaryTree<Integer>(5,new BinaryTree<Integer>(13,d1,d2),new BinaryTree<Integer>(13));
 
         BinaryTree<Integer> binaryTree = new BinaryTree<Integer>(1,b1,b2);
         BinaryTree<Integer> binaryTree2 = new BinaryTree<Integer>(1,b5,b3);
-        BinaryTree<Integer> binaryTree3 = new BinaryTree<Integer>(1,b6,new BinaryTree<>());
 
-        System.out.println(binaryTree.treeOccurs(binaryTree3));
              /*
              binaryTree
 
@@ -58,10 +49,6 @@ public class Main {
     */
 
         binaryTree.writeTree(); // Agrega el arbol al disco
-
-        System.out.println("Agarra el arbol del disco:");
-        binaryTree.readTree();
-        System.out.println();
 
         System.out.println("Weight:");
         System.out.println(binaryTree.weight());
@@ -127,14 +114,6 @@ public class Main {
         System.out.println(binaryTree.listOfLeaves());
         System.out.println();
 
-        System.out.println("Preorder:");
-        binaryTree.preorder();
-        System.out.println();
-
-        System.out.println("Preorder:");
-        binaryTree.preorder();
-        System.out.println();
-
         System.out.println("ByLevels:");
         binaryTree.byLevels();
         System.out.println();
@@ -149,6 +128,6 @@ public class Main {
 
         System.out.println("Postorder:");
         binaryTree.postorder();
-
+        System.out.println();
     }
 }

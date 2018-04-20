@@ -268,31 +268,30 @@ public class BinaryTree<T> implements Serializable {
         }
     }
 
-    public void postorder() { // Left, Right, Root
-        if(isEmpty()) {
+
+    public void postorder() {
+        Stack<DoubleNode<T>> stack1 = new Stack<>();
+        Stack<DoubleNode<T>> stack2 = new Stack<>();
+        DoubleNode<T> node = root;
+        if (node == null)
             return;
-        }
-        Stack<DoubleNode> stack = new Stack<>();
-        stack.push(root);
-        while(!stack.isEmpty()) {
-            DoubleNode node = stack.peek();
 
-            if(node.left == null && node.right == null) {
-                DoubleNode pop = stack.pop();
-                System.out.print(pop.elem + " ");;
-            }
-            else {
-                if(node.right != null) {
-                    stack.push(node.right);
-                    node.right = null;
-                }
-                if(node.left != null) {
-                    stack.push(node.left);
-                    node.left = null;
-                }
-            }
+        stack1.push(node);
+
+        while (!stack1.isEmpty()) {
+            DoubleNode<T> aux = stack1.pop();
+            stack2.push(aux);
+
+            if (aux.left != null)
+                stack1.push(aux.left);
+            if (aux.right != null)
+                stack1.push(aux.right);
         }
 
+        while (!stack2.isEmpty()) {
+            DoubleNode<T> aux = stack2.pop();
+            System.out.print(aux.elem + " ");
+        }
     }
 
     public void inorder() { //Left, Root, Right
