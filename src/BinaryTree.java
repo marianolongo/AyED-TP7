@@ -169,14 +169,16 @@ public class BinaryTree<T> {
     public boolean stable(){
         if (isEmpty()) return true;
         if (root.right == null && root.left == null) return true;
-        return privateStable(root);
-    }
-
-    private boolean privateStable(DoubleNode<T> root){
         if ((Integer) root.elem > (Integer) root.right.elem && (Integer) root.elem > (Integer) root.left.elem) return true;
         if ((Integer) root.elem < (Integer) root.right.elem || (Integer) root.elem < (Integer) root.left.elem) return false;
-        return privateStable(root.left) && privateStable(root.right);
+        return getLeft().stable() && getRight().stable();
     }
+
+//    private boolean privateStable(DoubleNode<T> root){
+//        if ((Integer) root.elem > (Integer) root.right.elem && (Integer) root.elem > (Integer) root.left.elem) return true;
+//        if ((Integer) root.elem < (Integer) root.right.elem || (Integer) root.elem < (Integer) root.left.elem) return false;
+//        return privateStable(root.left) && privateStable(root.right);
+//    }
 
    // public boolean treeOccurs(BinaryTree<T> tree){
 
