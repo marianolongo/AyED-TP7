@@ -55,11 +55,11 @@ public class Main {
         15     17
     */
 
-//        binaryTree.writeTree(); // Agrega el arbol al disco
-//
-//        System.out.println("Agarra el arbol del disco:");
-//        binaryTree.readTree();
-//        System.out.println();
+        binaryTree.writeTree(); // Agrega el arbol al disco
+
+        System.out.println("Agarra el arbol del disco:");
+        binaryTree.readTree();
+        System.out.println();
 
         System.out.println("Weight:");
         System.out.println(binaryTree.weight());

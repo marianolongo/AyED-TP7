@@ -1,13 +1,9 @@
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Stack;
 
-public class BinaryTree<T> {
+public class BinaryTree<T> implements Serializable{
 
     private class DoubleNode<T> {
         T elem;
