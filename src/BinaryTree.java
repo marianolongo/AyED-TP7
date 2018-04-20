@@ -189,6 +189,9 @@ public class BinaryTree<T> {
 
         }
     public void byLevels(){
+        if(isEmpty()){
+            return;
+        }
         QueueUs<DoubleNode> q = new QueueUs<DoubleNode>();
         q.enque(root);
 
@@ -206,50 +209,33 @@ public class BinaryTree<T> {
 
     }
     public void postorder() {
-        if(root==null) {
-            throw new RuntimeException("The tree is not valid");
+        if(isEmpty()) {
+            return;
         }
-        Stack<DoubleNode> stack = new Stack<DoubleNode>();
-        stack.push(root);
-        while(!stack.isEmpty()) {
-            DoubleNode temp = stack.peek();
-            if(temp.left==null && temp.right==null) {
-                DoubleNode pop = stack.pop();
-                System.out.println(pop.elem);;
-            }
-            else {
-                if(temp.right!=null) {
-                    stack.push(temp.right);
-                    temp.right = null;
-                }
-                if(temp.left!=null) {
-                    stack.push(temp.left);
-                    temp.left = null;
-                }
-            }
-        }
-    }
-    /*public void postOrder () {
         Stack<DoubleNode> stack = new Stack<>();
         stack.push(root);
-        DoubleNode current = stack.peek();
-        while (current.left != null || current.right != null) {
-            while (current.left != null) {
-                stack.push(current.left);
-                current = current.left;
-                if (current.right != null) {
-                    stack.push(current.right);
-                    current = current.right;
+        while(!stack.isEmpty()) {
+            DoubleNode node = stack.peek();
+            if(node.left == null && node.right == null) {
+                DoubleNode pop = stack.pop();
+                System.out.print(pop.elem + " ");;
+            }
+            else {
+                if(node.right != null) {
+                    stack.push(node.right);
+                    node.right = null;
+                }
+                if(node.left != null) {
+                    stack.push(node.left);
+                    node.left = null;
                 }
             }
-            while (stack.peek() != null) {
-                DoubleNode temporary = stack.pop();
-                System.out.println(temporary.elem);
-            }
         }
-    }*/
-    void inorder(){
-        if (root == null) {
+
+    }
+
+    public void inorder() {
+        if (isEmpty()) {
             return;
         }
         Stack<DoubleNode> stack = new Stack<DoubleNode>();
@@ -260,7 +246,7 @@ public class BinaryTree<T> {
         }
         while (stack.size() > 0) {
             node = stack.pop();
-            System.out.print(node.elem+ " ");
+            System.out.print(node.elem + " ");
             if (node.right != null) {
                 node = node.right;
                 while (node != null) {
@@ -269,5 +255,27 @@ public class BinaryTree<T> {
                 }
             }
         }
+    }
+
+    public void preorder(){
+        if(isEmpty()){
+            return;
+        }
+        Stack<DoubleNode> stack = new Stack<DoubleNode>();
+        stack.push(root);
+
+        while (!stack.empty()) {
+            DoubleNode node = stack.peek();
+            System.out.print(node.elem + " ");
+            stack.pop();
+
+            if (node.right != null) {
+                stack.push(node.right);
+            }
+            if (node.left != null) {
+                stack.push(node.left);
+            }
+        }
+
     }
 }
